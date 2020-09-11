@@ -15,18 +15,13 @@ using System.Windows.Shapes;
 namespace WarehouseManagement
 {
     /// <summary>
-    /// Interaction logic for LoginWindow.xaml
+    /// Interaction logic for UnitWindow.xaml
     /// </summary>
-    public partial class LoginWindow : Window
+    public partial class UnitWindow : Window
     {
-        public LoginWindow()
+        public UnitWindow()
         {
             InitializeComponent();
-        }
-
-        private void TextBox_TextChanged(object sender, TextChangedEventArgs e)
-        {
-
         }
     }
 }

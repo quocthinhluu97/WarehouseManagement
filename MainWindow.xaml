@@ -108,7 +108,7 @@
                     </Grid>
                 </Button>
 
-                <Button  Grid.Column="3"
+                <Button Command="{Binding UnitCommand}"  Grid.Column="3"
                          ToolTip="Unit">
                     <Grid>
                         <Grid.RowDefinitions>

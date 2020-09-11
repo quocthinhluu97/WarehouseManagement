@@ -40,7 +40,8 @@
                     <TextBox
   materialDesign:HintAssist.Hint="Login Name"
   Style="{StaticResource MaterialDesignFloatingHintTextBox}"
-  VerticalAlignment="Center" />
+  VerticalAlignment="Center"
+                             TextChanged="TextBox_TextChanged" />
                 </Grid>
                 <Grid Grid.Row="1" Grid.Column="0">
                     <PasswordBox
