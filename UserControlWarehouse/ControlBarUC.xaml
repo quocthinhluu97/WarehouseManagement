@@ -1,46 +1,65 @@
 ﻿<UserControl x:Class="WarehouseManagement.UserControlWarehouse.ControlBarUC"
-             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
-             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             xmlns:local="clr-namespace:WarehouseManagement.UserControlWarehouse"
-        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
-             mc:Ignorable="d" 
-             Name="ucControlBar"
-             d:DesignHeight="450" d:DesignWidth="800">
+                   xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                   xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                   xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+                   xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+                   xmlns:local="clr-namespace:WarehouseManagement.UserControlWarehouse"
+                   xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+                   xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
+                   mc:Ignorable="d"
+                   Name="ucControlBar"
+                   d:DesignHeight="450"
+                   d:DesignWidth="800">
+
+        <i:Interaction.Triggers>
+            <i:EventTrigger EventName="MouseLeftButtonDown">
+                <i:InvokeCommandAction Command="{Binding MouseMoveWindowCommand}"
+                                       CommandParameter="{Binding ElementName=ucControlBar}" />
+            </i:EventTrigger>
+        </i:Interaction.Triggers>
+
     <Grid>
-        <materialDesign:ColorZone
-  Mode="Inverted"
-  Padding="5">
+        <materialDesign:ColorZone Mode="Inverted"
+                                  Padding="5">
             <DockPanel>
-                <StackPanel Orientation="Horizontal" DockPanel.Dock="Right" Background="Transparent" VerticalAlignment="Center">
+                <StackPanel Orientation="Horizontal"
+                            DockPanel.Dock="Right"
+                            Background="Transparent"
+                            VerticalAlignment="Center">
                     <StackPanel.Resources>
                         <Style TargetType="Button">
-                            <Setter Property="Margin" Value="2 4 2 4"/>
+                            <Setter Property="Margin"
+                                    Value="2 4 2 4" />
                         </Style>
                     </StackPanel.Resources>
-                    <Button ToolTip="Min" Background="Green">
-                    <materialDesign:PackIcon Kind="WindowMinimize" />
+                    <Button Command="{Binding MinimizeWindowCommand}"
+                            CommandParameter="{Binding ElementName=ucControlBar}"
+                            ToolTip="Min"
+                            Background="Green">
+                        <materialDesign:PackIcon Kind="WindowMinimize" />
                     </Button>
-                    <Button ToolTip="Max" Background="Green">
-                    <materialDesign:PackIcon Kind="WindowMaximize" />
+                    <Button Command="{Binding MaximizeWindowCommand}"
+                            CommandParameter="{Binding ElementName=ucControlBar}"
+                            ToolTip="Max"
+                            Background="Green">
+                        <materialDesign:PackIcon Kind="WindowMaximize" />
                     </Button>
                     <Button Command="{Binding CloseWindowCommand}"
-                        CommandParameter="{Binding ElementName=ucControlBar}" ToolTip="Close" Background="Red">
-                    <materialDesign:PackIcon Kind="WindowClose" />
+                            CommandParameter="{Binding ElementName=ucControlBar}"
+                            ToolTip="Close"
+                            Background="Red">
+                        <materialDesign:PackIcon Kind="WindowClose" />
                     </Button>
                 </StackPanel>
-                <StackPanel
-      Orientation="Horizontal">
-                    <ToggleButton
-        Style="{DynamicResource MaterialDesignHamburgerToggleButton}" />
-                    <TextBlock
-        VerticalAlignment="Center"
-        Margin="16 0 0 0">
-      Material Design In XAML Toolkit
+                <StackPanel Orientation="Horizontal">
+                    <ToggleButton Style="{DynamicResource MaterialDesignHamburgerToggleButton}" />
+                    <TextBlock VerticalAlignment="Center"
+                    Text="{Binding Tag, ElementName=ucControlBar}"
+                    Foreground="White"
+                               Margin="16 0 0 0">
                     </TextBlock>
                 </StackPanel>
             </DockPanel>
         </materialDesign:ColorZone>
     </Grid>
-</UserControl>
+    </UserControl>

@@ -11,19 +11,30 @@ namespace WarehouseManagement.ViewModel
     public class MainViewModel : BaseViewModel
     {
         public bool IsLoaded { get; set; }
+        public ICommand LoadedWindowCommand { get; set; }
         public ICommand UnitCommand { get; set; }
+        public ICommand SupplierCommand { get; set; }
+
         public MainViewModel()
         {
-            if (!IsLoaded)
+            IsLoaded = false;
+
+            LoadedWindowCommand = new RelayCommand<object>((p) => { return true; }, (p) =>
             {
+                IsLoaded = true;
                 LoginWindow loginWindows = new LoginWindow();
                 loginWindows.ShowDialog();
-                IsLoaded = true;
-            }
+            });
 
             UnitCommand = new RelayCommand<object>((p)=> { return true; }, (p)=>
             {
                 UnitWindow window = new UnitWindow();
+                window.ShowDialog();
+            });
+
+            SupplierCommand = new RelayCommand<object>((p)=> { return true; }, (p)=>
+            {
+                SupplierWindow window = new SupplierWindow();
                 window.ShowDialog();
             });
         }
