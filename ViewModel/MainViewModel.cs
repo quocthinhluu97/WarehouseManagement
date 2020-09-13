@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Input;
+using WarehouseManagement.Model;
 
 namespace WarehouseManagement.ViewModel
 {
@@ -19,24 +20,43 @@ namespace WarehouseManagement.ViewModel
         {
             IsLoaded = false;
 
-            LoadedWindowCommand = new RelayCommand<object>((p) => { return true; }, (p) =>
+            LoadedWindowCommand = new RelayCommand<Window>((p) => { return true; }, (p) =>
             {
                 IsLoaded = true;
-                LoginWindow loginWindows = new LoginWindow();
-                loginWindows.ShowDialog();
+
+                if (p == null) return;
+
+                p.Hide();
+                LoginWindow loginWindow = new LoginWindow();
+                loginWindow.ShowDialog();
+
+                if (loginWindow.DataContext == null) return;
+
+                var loginVM = loginWindow.DataContext as LoginViewModel;
+
+                if (loginVM.IsLogin)
+                {
+                    p.Show();
+                }
+                else
+                {
+                    p.Close();
+                }
+
             });
 
-            UnitCommand = new RelayCommand<object>((p)=> { return true; }, (p)=>
-            {
-                UnitWindow window = new UnitWindow();
-                window.ShowDialog();
-            });
+            UnitCommand = new RelayCommand<object>((p) => { return true; }, (p) =>
+             {
+                 UnitWindow window = new UnitWindow();
+                 window.ShowDialog();
+             });
 
-            SupplierCommand = new RelayCommand<object>((p)=> { return true; }, (p)=>
-            {
-                SupplierWindow window = new SupplierWindow();
-                window.ShowDialog();
-            });
+            SupplierCommand = new RelayCommand<object>((p) => { return true; }, (p) =>
+             {
+                 SupplierWindow window = new SupplierWindow();
+                 window.ShowDialog();
+             });
+
         }
     }
 }

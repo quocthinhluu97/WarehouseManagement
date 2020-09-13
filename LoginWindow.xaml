@@ -5,6 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WarehouseManagement"
         xmlns:uc="clr-namespace:WarehouseManagement.UserControlWarehouse"
+        xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         TextElement.Foreground="{DynamicResource MaterialDesignBody}"
         TextElement.FontWeight="Regular"
@@ -16,6 +17,7 @@
         WindowStyle="None"
         ResizeMode="NoResize"
         WindowStartupLocation="CenterScreen"
+        DataContext="{StaticResource LoginVM}"
         Title="Login"
         Name="loginWindow"
         mc:Ignorable="d"
@@ -56,6 +58,7 @@
                       Grid.Column="0">
                     <TextBox materialDesign:HintAssist.Hint="Login Name"
                              Style="{StaticResource MaterialDesignFloatingHintTextBox}"
+                             Text="{Binding UserName}"
                              VerticalAlignment="Center"
                              TextChanged="TextBox_TextChanged" />
                 </Grid>
@@ -64,7 +67,14 @@
                     <PasswordBox x:Name="PasswordBox"
                                  materialDesign:HintAssist.Hint="Password"
                                  materialDesign:TextFieldAssist.HasClearButton="True"
-                                 materialDesign:HintAssist.HelperText="At least 8 characters" />
+                                 materialDesign:HintAssist.HelperText="At least 8 characters">
+                        <i:Interaction.Triggers>
+                            <i:EventTrigger EventName="PasswordChanged">
+                                <i:InvokeCommandAction Command="{Binding PasswordChangedCommand}"
+                                                       CommandParameter="{Binding ElementName=PasswordBox}" />
+                            </i:EventTrigger>
+                        </i:Interaction.Triggers>
+                    </PasswordBox>
                 </Grid>
                 <Grid Grid.Row="2"
                       Grid.Column="0">
@@ -74,14 +84,20 @@
                     </Grid.ColumnDefinitions>
                     <Button Grid.Column="0"
                             Style="{StaticResource MaterialDesignRaisedAccentButton}"
+                            IsDefault="True"
                             Width="100"
-                            ToolTip="Resource name: MaterialDesignRaisedAccentButton">
+                            ToolTip="Resource name: MaterialDesignRaisedAccentButton"
+                            Command="{Binding LoginCommand}"
+                            CommandParameter="{Binding ElementName=loginWindow}"
+                            Click="Button_Click">
                         Login
                     </Button>
                     <Button Grid.Column="1"
                             Style="{StaticResource MaterialDesignRaisedAccentButton}"
                             Width="100"
                             Background="OrangeRed"
+                            Command="{Binding CloseCommand}"
+                            CommandParameter="{Binding ElementName=loginWindow}"
                             ToolTip="Resource name: MaterialDesignRaisedAccentButton">
                         Exit
                     </Button>

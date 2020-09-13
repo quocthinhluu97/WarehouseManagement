@@ -28,5 +28,10 @@ namespace WarehouseManagement
         {
 
         }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }

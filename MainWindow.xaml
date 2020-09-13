@@ -26,7 +26,8 @@
 
     <i:Interaction.Triggers>
         <i:EventTrigger EventName="Loaded">
-            <i:InvokeCommandAction Command="{Binding LoadedWindowCommand}" />
+            <i:InvokeCommandAction Command="{Binding LoadedWindowCommand}"
+                                   CommandParameter="{Binding ElementName=mainWindow}" />
         </i:EventTrigger>
     </i:Interaction.Triggers>
 
@@ -41,11 +42,11 @@
         </Grid.ColumnDefinitions>
         <Grid Grid.Row="0">
             <uc:ControlBarUC Tag="{Binding Title, ElementName=mainWindow}">
-                
+
             </uc:ControlBarUC>
         </Grid>
 
-            <!-- Menu -->
+        <!-- Menu -->
         <Grid Grid.Row="1">
             <Grid Background="Transparent"
                   VerticalAlignment="Stretch"
@@ -127,8 +128,9 @@
                     </Grid>
                 </Button>
 
-                <Button Command="{Binding UnitCommand}"  Grid.Column="3"
-                         ToolTip="Unit">
+                <Button Command="{Binding UnitCommand}"
+                        Grid.Column="3"
+                        ToolTip="Unit">
                     <Grid>
                         <Grid.RowDefinitions>
                             <RowDefinition />
@@ -146,8 +148,9 @@
                     </Grid>
                 </Button>
 
-                <Button Command="{Binding SupplierCommand}" Grid.Column="4"
-                         ToolTip="Supplier">
+                <Button Command="{Binding SupplierCommand}"
+                        Grid.Column="4"
+                        ToolTip="Supplier">
                     <Grid>
                         <Grid.RowDefinitions>
                             <RowDefinition />
