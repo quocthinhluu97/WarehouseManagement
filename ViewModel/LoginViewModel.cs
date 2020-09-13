@@ -28,6 +28,8 @@ namespace WarehouseManagement.ViewModel
         public LoginViewModel()
         {
             IsLogin = false;
+            Password = "";
+            UserName = "";
 
             LoginCommand = new RelayCommand<Window>((p) => { return true; }, (p) =>
                  {
@@ -58,7 +60,6 @@ namespace WarehouseManagement.ViewModel
             {
                 IsLogin = false;
                 MessageBox.Show("Wrong username or password");
-
             }
         }
 

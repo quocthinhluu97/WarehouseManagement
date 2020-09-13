@@ -419,12 +419,15 @@
                     <Grid Grid.Row="1">
                     </Grid>
                     <Grid Grid.Row="2">
-                        <ListView>
+                        <ListView ItemsSource="{Binding InStockList}">
                             <ListView.View>
                                 <GridView>
-                                    <GridViewColumn Header="Index"></GridViewColumn>
-                                    <GridViewColumn Header="Product Name"></GridViewColumn>
-                                    <GridViewColumn Header="Number In Stock"></GridViewColumn>
+                                    <GridViewColumn Header="Index"
+                                                    DisplayMemberBinding="{Binding Index}"></GridViewColumn>
+                                    <GridViewColumn Header="Product Name"
+                                                    DisplayMemberBinding="{Binding Object.DisplayName}"></GridViewColumn>
+                                    <GridViewColumn Header="Number In Stock"
+                                                    DisplayMemberBinding="{Binding Count}"></GridViewColumn>
                                 </GridView>
                             </ListView.View>
                         </ListView>

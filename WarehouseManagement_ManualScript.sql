@@ -121,9 +121,17 @@ create table OutputInfo
 )
 go
 
+insert into UserRole (DisplayName) values (N'admin')
+insert into UserRole (DisplayName) values (N'staff')
+
 insert into Users (DisplayName, Username, Password, IdRole) values (N'admin', N'admin', N'db69fc039dcbd2962cb4d28f5891aae1
 ', 1)
 insert into Users (DisplayName, Username, Password, IdRole) values (N'staff', N'staff', N'978aae9bb6bee8fb75de3e4830a1be46
 
 ', 2)
 go
+
+select * from Users
+
+
+use WarehouseManagement
